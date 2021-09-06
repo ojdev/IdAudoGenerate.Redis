@@ -1,0 +1,2 @@
+# IdAudoGenerate.Redis
+使用Redis中StringIncrement实现的Id生成器
