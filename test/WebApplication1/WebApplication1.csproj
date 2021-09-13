@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdAutoGenerate.Redis" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\IdAutoGenerate.Redis\IdAutoGenerate.Redis.csproj" />
   </ItemGroup>
 
 </Project>
