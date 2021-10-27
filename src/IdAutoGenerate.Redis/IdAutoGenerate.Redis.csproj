@@ -6,6 +6,7 @@
     <PackageProjectUrl>https://github.com/ojdev/IdAutoGenerate.Redis</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ojdev/IdAutoGenerate.Redis</RepositoryUrl>
     <Authors>欧俊</Authors>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">

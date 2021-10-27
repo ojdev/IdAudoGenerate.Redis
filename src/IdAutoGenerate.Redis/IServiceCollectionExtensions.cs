@@ -1,5 +1,4 @@
 ﻿using IdAutoGenerate.Redis;
-using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
 namespace Microsoft.Extensions.DependencyInjection

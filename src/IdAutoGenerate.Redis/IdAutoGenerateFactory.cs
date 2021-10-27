@@ -9,6 +9,7 @@ namespace IdAutoGenerate.Redis
         private readonly IConnectionMultiplexer _connectionMultiplexer;
         private readonly IdAutoGenerateFactoryConfigBuild _build;
         private readonly IDatabase db;
+
         /// <summary>
         /// 
         /// </summary>
@@ -21,13 +22,20 @@ namespace IdAutoGenerate.Redis
             db = _connectionMultiplexer.GetDatabase(_build.DB ?? -1);
         }
         /// <summary>
+        /// 
+        /// </summary>
+        public IdAutoGenerateFactory()
+        {
+        }
+
+        /// <summary>
         /// 设置初始值
         /// </summary>
         /// <param name="key">指定的key</param>
         /// <param name="value"></param>
         /// <param name="force">即使已经存在也强制设置</param>
         /// <returns></returns>
-        public async Task SetInitialSeedAsync(string key, long value, bool force = false)
+        public virtual async Task SetInitialSeedAsync(string key, long value, bool force = false)
         {
             var keyExists = await db.KeyExistsAsync(key);
             if (!keyExists || force)
@@ -41,7 +49,7 @@ namespace IdAutoGenerate.Redis
         /// <param name="value"></param>
         /// <param name="force">即使已经存在也强制设置</param>
         /// <returns></returns>
-        public async Task SetInitialSeedAsync(long value, bool force = false)
+        public virtual async Task SetInitialSeedAsync(long value, bool force = false)
         {
             await SetInitialSeedAsync(_build.DefaultKey, value, force);
         }
@@ -53,7 +61,7 @@ namespace IdAutoGenerate.Redis
             }
             return await db.StringIncrementAsync(key);
         }
-        public async Task<long> GetIncrementAsync()
+        public virtual async Task<long> GetIncrementAsync()
         {
             return await GetIncrementAsync(_build.DefaultKey);
         }
@@ -65,7 +73,7 @@ namespace IdAutoGenerate.Redis
         /// <param name="padfix">补位的字符串</param>
         /// <param name="prefix">前缀</param>
         /// <returns></returns>
-        public async Task<string> GetCode(string key, int length, char paddingChar = '0', string prefix = null)
+        public virtual async Task<string> GetCode(string key, int length, char paddingChar = '0', string prefix = null)
         {
             var increment = await GetIncrementAsync(key);
             var code = increment.ToString();
@@ -78,7 +86,7 @@ namespace IdAutoGenerate.Redis
         /// <param name="paddingChar">补位的字符</param>
         /// <param name="prefix">前缀</param>
         /// <returns></returns>
-        public async Task<string> GetCode(int length, char paddingChar = '0', string prefix = null)
+        public virtual async Task<string> GetCode(int length, char paddingChar = '0', string prefix = null)
         {
             return await GetCode(_build.DefaultKey, length, paddingChar, prefix);
         }
