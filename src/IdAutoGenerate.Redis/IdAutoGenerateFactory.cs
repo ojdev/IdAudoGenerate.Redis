@@ -66,6 +66,15 @@ namespace IdAutoGenerate.Redis
             return await GetIncrementAsync(_build.DefaultKey);
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public virtual async Task<bool> KeyExistsAsync(string key)
+        {
+            return await db.KeyExistsAsync(key);
+        }
+        /// <summary>
         /// 获取一种编号
         /// </summary>
         /// <param name="key">redis中存储编号的key</param>
